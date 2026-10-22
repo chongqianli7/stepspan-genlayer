@@ -4,6 +4,8 @@
 
 StepSpan is a route evidence desk for venue visitors and organizers. Draw a small directed graph, provide the venue's published access page, and inspect the evidence for every connection. A deterministic search distinguishes a supported continuous path from a missing link or blocked proposed route.
 
+[Open StepSpan](https://chongqianli7.github.io/stepspan-genlayer/) · [Contract primitive](https://github.com/chongqianli7/stepspan-primitive)
+
 ## Start locally
 
 Requires Node.js 20.19+ or 22.12+.
@@ -31,7 +33,7 @@ The landing page opens a fictional Northlight Museum example. Change the scenari
 
 A pending intent and returned transaction hash survive page reload. Recheck performs reads only. If the wallet request fails without a hash, the intent remains blocked until the exact hash is supplied from wallet activity. A rejected wallet signature releases the intent. There is no automatic write retry, redeployment or appeal. Some terminal failures release the pending guard, with the receipt retained for inspection; other incomplete or ambiguous evidence keeps it blocked.
 
-No network deployment or finalized transaction is configured in this package. The protocol and browser tests use simulated network responses. Additional SDK tests exercise real SDK storage and calldata serialization with mocked web/LLM responses. None substitutes for a live network run.
+The public Studionet installation is configured in `deployment.json`. Its canonical contract is `0x961658AeeD87fEa6A46206BbA9B48d48Cf88C5b5`; the published record owner is `0x2e08f7d3a9465e9127e7ca375d40bec9ec4da7ba`, plan ID `grant-visitor-center`. Use **Read a finalized route** to fetch the record without a wallet. The protocol and browser tests use simulated network responses; the independent real-network record is in `evidence/studionet.json`.
 
 ## Source and tests
 
@@ -64,4 +66,4 @@ genvm-lint check contracts/stepspan.py
 
 Browser checks cover example outcomes, JSON downloads, layouts at 320/390/768/1440 pixels, draft persistence, rejected signatures, network mismatch, interrupted wallet requests, reload recovery, majority-agreement guards, failed execution, terminal receipt binding and historical reads. Signed transactions and chain state are simulated in these browser tests. To use an existing Chromium executable, set `STEPSPAN_CHROMIUM_PATH`.
 
-`public/mark.svg` is the native vector project mark. `schema.json` contains the six-method contract ABI. The app preserves incomplete JSON drafts across tab changes and reloads. A failed read cannot replace the last validated record.
+`public/mark.svg` is the native vector project mark; `public/stepspan-logo-512.png` is the 512-pixel PNG export. `schema.json` contains the six-method contract ABI. The app preserves incomplete JSON drafts across tab changes and reloads. A failed read cannot replace the last validated record.

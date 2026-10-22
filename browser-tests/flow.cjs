@@ -348,6 +348,12 @@ export function receiptCall(t){return t.call;}
       },
       { mocked: true },
     );
+    await check("published example reads without a wallet", async p=>{
+      await p.evaluate(()=>window.__qa.latest=1);
+      await p.click("#read-finalized");
+      await p.getByText("A connected route is supported.").waitFor();
+      assert.equal(await p.evaluate(()=>window.__qa.writes),0);
+    }, {mocked:true});
     console.log("Browser checks:", passed, "passed");
   } finally {
     await server.close();
