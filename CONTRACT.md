@@ -38,7 +38,7 @@ The contract stores complete accepted source text, source digest, input digest, 
 ## Run tests
 
 ```sh
-python3 -m unittest discover -s tests -v
+python3 -m unittest discover -s contract-tests -v
 ```
 
 The suite exercises graph continuity, direction, alternate routes, stale revisions, immutable inputs, ownership, quote validation, source changes and independent disagreement. These protocol tests use a minimal mocked host. Additional SDK-backed checks use the pinned GenLayer runner and real SDK storage and calldata encoding, with mocked web and LLM responses. Neither suite establishes live-network consensus.
